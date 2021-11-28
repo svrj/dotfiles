@@ -46,6 +46,7 @@ rust() {
 # https://github.com/dom96/choosenim#unix
 nim() {
     curl https://nim-lang.org/choosenim/init.sh -sSf | sh
+    echo "export path=/home/jeremy/.nimble/bin:\$path" | sed s/path/PATH/g >> ~/.bashrc
 }
 
 # SBCL
