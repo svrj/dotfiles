@@ -180,7 +180,7 @@ bar {
         status_command i3blocks
 }
 
-exec xrandr --output HDMI-2 --left-of DP-1 --rotate left
+exec xrandr --output DP-3-2 --left-of DP-3-3 --rotate left
+
 # Why doesn't this work??
 # exec --no-startup-id xsetroot -solid "#00000F"
-
