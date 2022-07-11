@@ -182,7 +182,12 @@ vim_setup() {
     git clone http://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     vim +PluginInstall +qall
 
-    sudo apt install neovim
+    sudo apt install -y \
+        neovim \
+        nodejs \
+        npm
+    mkdir "$HOME/.npm-global"
+    npm config set prefix '~/.npm-global'
 }
 
 #------------------------------------
