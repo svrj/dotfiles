@@ -17,7 +17,19 @@ apt() {
         python3-venv \
         openssh-server \
         openssh-client \
-        tmux
+        tmux \
+        xbacklight \
+        alsa-tools \
+        pulseaudio-utils \
+        pavucontrol \
+        libnotify-bin \
+        htop \
+        maim \
+        feh \
+        locate \
+        acpi \
+        rofi \
+        shellcheck
 }
 
 #------------------------
