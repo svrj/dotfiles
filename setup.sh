@@ -167,7 +167,7 @@ setup_dotfiles() {
 vim_setup() {
     mkdir -p $dotfilesDir/.vim/bundle
     cd $dotfilesDir/.vim/bundle
-    git clone git://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    git clone http://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     vim +PluginInstall +qall
 
     sudo apt install neovim
