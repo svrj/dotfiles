@@ -160,7 +160,7 @@ function link_dotfile {
 link_dotfiles() {
     #link_dotfile .vim
     link_dotfile .vimrc
-    #link_dotfile .bashrc
+    link_dotfile .bashrc
     #link_dotfile .gitconfig
     #link_dotfile .ackrc
     #link_dotfile .tmux.conf
