@@ -190,6 +190,10 @@ vim_setup() {
     npm config set prefix '~/.npm-global'
 }
 
+sdkman() {
+    curl -s "https://get.sdkman.io" | bash
+}
+
 #------------------------------------
 do_thing() {
     case $1 in
@@ -213,6 +217,10 @@ do_thing() {
             echo "Installing Docker"
             docker
             ;;
+    sdkman|--sdkman)
+        echo "Installing sdkman"
+        sdkman
+        ;;
 	croc|--croc)
 	    echo "Installing croc"
 	    croc
