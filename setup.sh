@@ -134,46 +134,41 @@ nix() {
 dotfilesDir=$(pwd)
 
 function link_dotfile {
-  dest="${HOME}/${1}"
+  target="$1"
+  dest_dir="$2"
+  dest="$dest_dir/$target"
   dateStr=$(date +%Y-%m-%d-%H%M)
 
-  if [ -h ~/${1} ]; then
+  if [ -h "$dest" ]; then
     # Existing symlink 
-    echo "Removing existing symlink: ${dest}"
-    rm ${dest} 
+    echo "Removing existing symlink: $dest"
+    rm "$dest"
 
-  elif [ -f "${dest}" ]; then
+  elif [ -f "$dest" ]; then
     # Existing file
-    echo "Backing up existing file: ${dest}"
-    mv ${dest}{,.${dateStr}}
+    echo "Backing up existing file: $dest"
+    mv "$dest" "$dest.$dateStr"
 
-  elif [ -d "${dest}" ]; then
+  elif [ -d "$dest" ]; then
     # Existing dir
-    echo "Backing up existing dir: ${dest}"
-    mv ${dest}{,.${dateStr}}
+    echo "Backing up existing dir: $dest"
+    mv "$dest" "$dest.$dateStr"
   fi
 
-  echo "Creating new symlink: ${dest}"
-  ln -s ${dotfilesDir}/${1} ${dest}
+  echo "Creating new symlink: $dest"
+  ln -s "$dotfilesDir/$target" "$dest"
 }
 
 link_dotfiles() {
-    #link_dotfile .vim
-    link_dotfile .vimrc
-    link_dotfile .bashrc
-    #link_dotfile .gitconfig
-    #link_dotfile .ackrc
-    #link_dotfile .tmux.conf
-    #link_dotfile .inputrc
-    #link_dotfile .xinitrc
-    #link_dotfile .curlrc
-    #link_dotfile .gf
+    link_dotfile .vimrc "$HOME"
+    link_dotfile .bashrc "$HOME"
+    link_dotfile .config "$HOME"
 }
 
 setup_dotfiles() {
     git submodule update --init --recursive
 
-    ln -sr $dotfilesDir/vimrc/.vimrc $dotfilesDir/.vimrc
+    link_dotfiles
 }
 
 vim_setup() {
