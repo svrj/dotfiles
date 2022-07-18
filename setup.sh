@@ -212,28 +212,28 @@ do_thing() {
             echo "Installing Docker"
             docker
             ;;
-    sdkman|--sdkman)
-        echo "Installing sdkman"
-        sdkman
-        ;;
-	croc|--croc)
-	    echo "Installing croc"
-	    croc
-	    ;;
-	nix|--nix)
-	    echo "Installing Nix"
-	    nix
-	    ;;
-	dotfiles|--dotfiles)
+        sdkman|--sdkman)
+            echo "Installing sdkman"
+            sdkman
+            ;;
+        croc|--croc)
+            echo "Installing croc"
+            croc
+            ;;
+        nix|--nix)
+            echo "Installing Nix"
+            nix
+            ;;
+        dotfiles|--dotfiles)
             echo "Setting up dotfiles"
-	    setup_dotfiles
+            setup_dotfiles
             link_dotfiles
-	    ;;
-	vim|--vim)
-	    echo "Setting up vim"
-	    vim_setup
-	    ;;
-        *)
+            ;;
+        vim|--vim)
+            echo "Setting up vim"
+            vim_setup
+            ;;
+            *)
             echo "Unsupported argument: \"$1\""
             ;;
     esac
