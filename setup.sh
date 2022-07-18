@@ -36,6 +36,14 @@ apt() {
 # Install Other Packages
 #------------------------
 
+i3wm() {
+    sudo apt update && sudo apt install -y i3 i3blocks
+    if which python3; then
+        # https://pypi.org/project/i3-resurrect/#getting-started
+        python3 -m pip install --upgrade i3-resurrect psutil
+    fi
+}
+
 # Tailscale
 # https://tailscale.com/download
 tailscale() {
