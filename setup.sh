@@ -3,7 +3,7 @@
 #------------------------
 # Install Apt Packages
 #------------------------
-apt() {
+setup_apt() {
     sudo apt update && sudo apt install -y \
         build-essential \
         cmake \
@@ -36,7 +36,7 @@ apt() {
 # Install Other Packages
 #------------------------
 
-i3wm() {
+setup_i3wm() {
     sudo apt update && sudo apt install -y i3 i3blocks
     if which python3; then
         # https://pypi.org/project/i3-resurrect/#getting-started
@@ -46,7 +46,7 @@ i3wm() {
 
 # Tailscale
 # https://tailscale.com/download
-tailscale() {
+setup_tailscale() {
     curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
     curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
     sudo apt update && sudo apt install tailscale
@@ -58,26 +58,26 @@ tailscale() {
 
 # Rust
 # https://www.rust-lang.org/tools/install
-rust() {
+setup_rust() {
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 # Nim
 # https://github.com/dom96/choosenim#unix
-nim() {
+setup_nim() {
     curl https://nim-lang.org/choosenim/init.sh -sSf | sh
 }
 
 # SBCL
 # https://lisp-lang.org/learn/getting-started/
-sbcl() {
+setup_sbcl() {
     # sudo apt install sbcl
     return 1
 }
 
 # Guile
 # https://www.gnu.org/software/guile/download/
-guile() {
+setup_guile() {
     # sudo apt install guile-3.0
     return 1
 }
@@ -87,14 +87,14 @@ guile() {
 
 # Haskell
 # https://docs.haskellstack.org/en/stable/install_and_upgrade/#ubuntu
-haskell() {
+setup_haskell() {
     # sudo apt install stack -y && stack upgrade
     return 1
 }
 
 # keybase
 ## Still kind of an unresolved issue: adding a new device on OS reinstall
-keybase() {
+setup_keybase() {
     # curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
     # sudo apt install ./keybase_amd64.deb
     # run_keybase
@@ -103,7 +103,7 @@ keybase() {
 
 # Docker
 # https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
-docker() {
+setup_docker() {
     sudo apt remove docker docker-engine docker.io containerd runc
 
     sudo apt update
@@ -122,13 +122,13 @@ docker() {
 
 # croc
 # https://github.com/schollz/croc
-croc() {
+setup_croc() {
     curl https://getcroc.schollz.com | bash
 }
 
 # nix
 # https://nixos.org/download.html
-nix() {
+setup_nix() {
     curl -L https://nixos.org/nix/install | sh
 }
 # Chrome
@@ -179,9 +179,9 @@ setup_dotfiles() {
     link_dotfiles
 }
 
-vim_setup() {
-    mkdir -p $dotfilesDir/.vim/bundle
-    cd $dotfilesDir/.vim/bundle
+setup_vim() {
+    mkdir -p "$dotfilesDir/.vim/bundle"
+    cd "$dotfilesDir/.vim/bundle" || exit 1
     git clone http://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     vim +PluginInstall +qall
 
@@ -190,10 +190,10 @@ vim_setup() {
         nodejs \
         npm
     mkdir "$HOME/.npm-global"
-    npm config set prefix '~/.npm-global'
+    npm config set prefix "$HOME/.npm-global"
 }
 
-sdkman() {
+setup_sdkman() {
     curl -s "https://get.sdkman.io" | bash
 }
 
@@ -202,35 +202,35 @@ do_thing() {
     case $1 in
         apt|--apt)
             echo "Installing Apt Packages"
-            apt
+            setup_apt
             ;;
         rust|--rust)
             echo "Installing Rust"
-            rust
+            setup_rust
             ;;
         nim|--nim)
             echo "Installing Nim"
-            nim
+            setup_nim
             ;;
         tailscale|--tailscale)
             echo "Installing Tailscale"
-            tailscale
+            setup_tailscale
             ;;
         docker|--docker)
             echo "Installing Docker"
-            docker
+            setup_docker
             ;;
         sdkman|--sdkman)
             echo "Installing sdkman"
-            sdkman
+            setup_sdkman
             ;;
         croc|--croc)
             echo "Installing croc"
-            croc
+            setup_croc
             ;;
         nix|--nix)
             echo "Installing Nix"
-            nix
+            setup_nix
             ;;
         dotfiles|--dotfiles)
             echo "Setting up dotfiles"
@@ -239,7 +239,7 @@ do_thing() {
             ;;
         vim|--vim)
             echo "Setting up vim"
-            vim_setup
+            setup_vim
             ;;
             *)
             echo "Unsupported argument: \"$1\""
@@ -250,7 +250,7 @@ do_thing() {
 echo "-----------------------"
 echo "Jeremy's computer setup"
 echo "-----------------------"
-if [ -z "$@" ]
+if [ -z "$*" ]
 then
     echo "Nothing to do"
 else
