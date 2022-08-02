@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+swaymsg exec 'wlr-randr --output eDP-1 --pos 0\,600' 
+swaymsg exec 'wlr-randr --output DP-7 --pos 3000\,0' 
+swaymsg exec 'wlr-randr --output DP-6 --pos 1920\,0' 
+swaymsg exec 'wlr-randr --output DP-6 --transform 90'

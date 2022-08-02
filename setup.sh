@@ -44,6 +44,10 @@ setup_i3wm() {
     fi
 }
 
+setup_sway() {
+    sudo apt update && sudo apt install -y sway
+}
+
 # Tailscale
 # https://tailscale.com/download
 setup_tailscale() {
