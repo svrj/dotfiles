@@ -123,6 +123,8 @@ export PATH="$(cat /etc/environment)"
 ### GCC ARM Toolchain
 ###
 export PATH="$HOME/EmbeddedARM/gcc-arm-none-eabi/gcc-arm-none-eabi-5_4-2016q2/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
 export PATH="$HOME/.local/bin:$PATH"
 [[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
 
