@@ -1,2 +1,4 @@
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+PATH=/home/jeremy/.sdkman/candidates/java/current/bin:/home/jeremy/.npm-global/bin:/home/jeremy/.pythonz/bin:/home/jeremy/.local/bin:/home/jeremy/.cargo/bin:/home/jeremy/bin:/home/jeremy/EmbeddedARM/gcc-arm-none-eabi/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/home/jeremy/EmbeddedARM/gcc-arm-none-eabi/gcc-arm-none-eabi-5_4-2016q2/bin:PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin":"$PATH"
+
 QT_QPA_PLATFORM=xcb
