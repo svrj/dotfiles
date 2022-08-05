@@ -29,7 +29,8 @@ setup_apt() {
         locate \
         acpi \
         rofi \
-        shellcheck
+        shellcheck \
+        brightnessctl
 }
 
 #------------------------
