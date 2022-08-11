@@ -117,7 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 # RESET PATH
-export PATH="$(cat /etc/environment)"
+source /etc/environment
 
 ###
 ### GCC ARM Toolchain
