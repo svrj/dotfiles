@@ -2,17 +2,20 @@
 # Manage logout with rofi
 # https://kifarunix.com/install-i3-windows-manager-on-ubuntu/
 
-option=$(echo -e "suspend\nlock screen\nlogout\nreboot\npoweroff\nKill user $USER" | rofi -width 600 -dmenu -p system:)
+option=$(echo -e "suspend\nhibernate\nlock screen\nlogout\nreboot\npoweroff\nKill user $USER" | rofi -width 600 -dmenu -p system:)
 case $option in
     suspend)
         # sudo  /usr/bin/systemctl syspend
-        sudo pm-suspend
+        swaylock -f && sleep 2 && sudo pm-suspend
+        ;;
+    hibernate)
+        swaylock -f && sleep 2 && sudo pm-hibernate
         ;;
     'lock screen')
-        i3lock
+        swaylock
         ;;
     logout)
-        i3-nagbar -t warning -m 'Are you sure you  want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'swaymsg exit'
+        swaynag -m 'Are you sure you  want to exit sway?' -b 'Yes, exit i3' 'swaymsg exit'
         ;;
     reboot)
         /usr/bin/systemctl reboot

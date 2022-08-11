@@ -189,8 +189,9 @@ bar {
 exec "/home/$USER/.config/sway/bin/setup_screens > debug.log"
 bindsym $mod+Shift+s exec "/home/$USER/.config/sway/bin/setup_screens > debug.log"
 
-# swaymsg exec 'wlr-randr --output eDP-1 --pos 0\,600'
-# swaymsg exec 'wlr-randr --output DP-7 --pos 3000\,0'
-# swaymsg exec 'wlr-randr --output DP-6 --pos 1920\,0'
-# swaymsg exec 'wlr-randr --output DP-6 --transform 90'
+# Clamshell mode
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
 
+exec_always "/home/$USER/.config/sway/bin/toggle_screen_states.sh"

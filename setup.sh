@@ -30,8 +30,13 @@ setup_apt() {
         acpi \
         rofi \
         shellcheck \
-        brightnessctl
+        brightnessctl \
+        tlp
 }
+
+# TLP
+# https://linrunner.de/tlp/faq/operation.html#system-freezes-on-wakeup-from-suspend-on-battery
+# AHCI_RUNTIME_PM_ON_BAT=on
 
 #------------------------
 # Install Other Packages
