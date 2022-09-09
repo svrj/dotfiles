@@ -194,4 +194,4 @@ set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
-exec_always "/home/$USER/.config/sway/bin/toggle_screen_states.sh"
+exec_always "/home/$USER/.config/sway/bin/toggle_screen_state.sh"
