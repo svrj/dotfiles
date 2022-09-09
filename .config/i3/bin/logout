@@ -8,7 +8,7 @@ case $option in
         sudo  /usr/bin/systemctl syspend
         ;;
     'lock screen')
-        i3lock
+        i3lock -n -c 270033 --pointer default --show-failed-attempts
         ;;
     logout)
         i3-nagbar -t warning -m 'Are you sure you  want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'
@@ -22,4 +22,7 @@ case $option in
     'kill user $USER')
         loginctl kill-user "$USER"
         ;;
+    *)
+        >&2 echo "Invalid argument!"
+        exit 1
 esac
