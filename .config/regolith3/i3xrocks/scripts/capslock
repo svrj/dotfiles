@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+capslock="$(xset q | grep Caps | awk '{print $4}')"
+
+if [ "$capslock" = "on" ]; then
+    echo "CAPS"
+    echo "CAPS"
+else
+    echo "OFF"
+    echo "OFF"
+fi

@@ -1,0 +1,4 @@
+regolith.wallpaper.file: "/home/jeremy/Pictures/Fotokite/Fotokite_003.jpg"
+regolith.lockscreen.wallpaper.file: "/home/jeremy/Pictures/Fotokite/Fotokite_003.jpg"
+!regolith.look.path: /usr/share/regolith-look/solarized-dark
+regolith.look.path: /usr/share/regolith-look/nord

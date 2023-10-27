@@ -1,0 +1,6 @@
+# Show title of focused window
+[capslock]
+# Uncomment to show an icon
+# label=
+interval=1
+min_width=100%

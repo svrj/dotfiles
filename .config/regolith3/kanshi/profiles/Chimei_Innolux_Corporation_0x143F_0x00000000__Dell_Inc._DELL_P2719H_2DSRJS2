@@ -1,0 +1,5 @@
+profile {
+	output "Chimei Innolux Corporation 0x143F 0x00000000" mode 1920x1200@60.003Hz position 1080,1080 transform normal scale 1
+	output "Dell Inc. DELL P2719H 2DSRJS2" mode 1920x1080@60Hz position 0,0 transform 90 scale 1
+	output "Dell Inc. DELL P2719H 5Z3BLS2" disable
+}
