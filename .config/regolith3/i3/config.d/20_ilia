@@ -7,9 +7,9 @@ set_from_resource $wm.program.launcher.app wm.program.launcher.app ilia -p apps
 bindsym $mod+$wm.binding.launcher.app exec --no-startup-id $wm.program.launcher.app -t $ilia.stylesheet
 
 ## Launch // Command // 
-set_from_resource $wm.binding.launcher.cmd wm.binding.launcher.cmd Alt+Shift+c
-set_from_resource $wm.program.launcher.cmd wm.program.launcher.cmd ilia -p terminal
-bindsym $mod+$wm.binding.launcher.cmd exec --no-startup-id $wm.program.launcher.cmd -t $ilia.stylesheet
+#set_from_resource $wm.binding.launcher.cmd wm.binding.launcher.cmd Alt+Shift+c
+#set_from_resource $wm.program.launcher.cmd wm.program.launcher.cmd ilia -p terminal
+#bindsym $mod+$wm.binding.launcher.cmd exec --no-startup-id $wm.program.launcher.cmd -t $ilia.stylesheet
 
 ## Launch // Keybinding Viewer // <><Shift> ? ##
 set_from_resource $wm.binding.help wm.binding.help Shift+question

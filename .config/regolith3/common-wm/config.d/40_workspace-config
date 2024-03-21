@@ -42,8 +42,8 @@ bindsym $mod+$wm.binding.take_right move workspace to output right
 set_from_resource $wm.binding.split_v wm.binding.split_v v
 bindsym $mod+$wm.binding.split_v split vertical
 
-## Modify // Horizontal Window Orientation // <> g ##
-set_from_resource $wm.binding.split_h wm.binding.split_h g
+## Modify // Horizontal Window Orientation // <> h ##
+set_from_resource $wm.binding.split_h wm.binding.split_h h
 bindsym $mod+$wm.binding.split_h split horizontal
 
 ## Modify // Toggle Window Orientation // <> Backspace ##
