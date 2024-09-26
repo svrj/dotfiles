@@ -139,18 +139,33 @@ export PATH=$PATH:"$HOME/.config/emacs/bin"
 . "$HOME/.cargo/env"
 
 # pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 export VCPKG_DISABLE_METRICS=true
 
 export PATH=/home/jeremy/.nimble/bin:$PATH
 
-export PATH="/opt/Qt/Tools/QtCreator/bin:$PATH"
-
 # Added by Radicle.
 export PATH="$PATH:/tmp/radicle/bin"
+
+export PATH="/usr/bin:/bin:$PATH"
+
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/jeremy/src/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+    # eval "$__conda_setup"
+# else
+    # if [ -f "/home/jeremy/src/miniconda3/etc/profile.d/conda.sh" ]; then
+        # . "/home/jeremy/src/miniconda3/etc/profile.d/conda.sh"
+    # else
+        # export PATH="/home/jeremy/src/miniconda3/bin:$PATH"
+    # fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
