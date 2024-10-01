@@ -21,7 +21,14 @@ if [ -d "$INSTALL_PATH/luarocks-"$LUAROCKS_VERSION"" ]; then
     echo "remove $INSTALL_PATH/luarocks-$LUAROCKS_VERSION to reinstall"
 else
     wget http://luarocks.github.io/luarocks/releases/luarocks-"$LUAROCKS_VERSION".tar.gz -O "$LUAROCKS" --progress=bar
-    (cd "$INSTALL_PATH" && tar --extract --gzip --file "$LUAROCKS" && cd "$INSTALL_PATH/luarocks-"$LUAROCKS_VERSION"/" && ./configure && make && sudo make install)
+    (
+        cd "$INSTALL_PATH" && \
+        tar --extract --gzip --file "$LUAROCKS" && \
+        cd "$INSTALL_PATH/luarocks-"$LUAROCKS_VERSION"/" && \
+        ./configure --with-lua-bin="../lua-$LUA_VERSION/src/" --with-lua-include="../lua-$LUA_VERSION/src" && \
+        make && \
+        sudo make install
+    )
 fi
 
 INIT_LUA_PATH="$HOME/.config/nvim/init.lua"
