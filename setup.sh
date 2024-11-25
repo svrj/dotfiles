@@ -11,55 +11,49 @@ setup_apt() {
         git \
         vim \
         neovim \
-        python3 \
-        python3-dev \
-        python3-pip \
-        python3-venv \
+        python-is-python3 \
         openssh-server \
         openssh-client \
         tmux \
-        xbacklight \
         alsa-tools \
         pulseaudio-utils \
         pavucontrol \
         libnotify-bin \
         htop \
         maim \
+        flameshot \
         feh \
         locate \
         acpi \
         rofi \
         shellcheck \
         brightnessctl \
-        tlp
+        silversearcher-ag \
+        xclip \
+        pv
 }
-
-# TLP
-# https://linrunner.de/tlp/faq/operation.html#system-freezes-on-wakeup-from-suspend-on-battery
-# AHCI_RUNTIME_PM_ON_BAT=on
 
 #------------------------
 # Install Other Packages
 #------------------------
 
-setup_i3wm() {
-    sudo apt update && sudo apt install -y i3 i3blocks
-    if which python3; then
-        # https://pypi.org/project/i3-resurrect/#getting-started
-        python3 -m pip install --upgrade i3-resurrect psutil
-    fi
-}
+setup_regolith_ubuntu22() {
+    wget -qO - https://regolith-desktop.org/regolith.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/regolith-archive-keyring.gpg > /dev/null
 
-setup_sway() {
-    sudo apt update && sudo apt install -y sway
+    echo deb "[arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] \
+https://regolith-desktop.org/release-3_2-ubuntu-jammy-amd64 jammy main" | \
+    sudo tee /etc/apt/sources.list.d/regolith.list
+
+    sudo apt update
+    sudo apt install regolith-desktop regolith-session-flashback regolith-look-lascaille
 }
 
 # Tailscale
 # https://tailscale.com/download
 setup_tailscale() {
-    curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
-    curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
-    sudo apt update && sudo apt install tailscale
+    curl -fsSL https://tailscale.com/install.sh | sh
+
     ## Authenticate
     # sudo tailscale up
     ## Show Tailscale IP
@@ -114,18 +108,23 @@ setup_keybase() {
 # Docker
 # https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 setup_docker() {
-    sudo apt remove docker docker-engine docker.io containerd runc
+    for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 
-    sudo apt update
-    sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release 
+    # Add Docker's official GPG key:
+    sudo apt-get update
+    sudo apt-get install ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
+    # Add the repository to Apt sources:
     echo \
-    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null 
-    
-    sudo apt update && sudo apt install docker-ce docker-ce-cli containerd.io
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     # Check if Docker installation succeeded
     # sudo docker run hello_world
 }
@@ -210,6 +209,10 @@ setup_sdkman() {
 #------------------------------------
 do_thing() {
     case $1 in
+        regolith|--regolith)
+            echo "Installing Regolith"
+            setup_regolith_ubuntu22
+            ;;
         apt|--apt)
             echo "Installing Apt Packages"
             setup_apt
