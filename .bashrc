@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -123,14 +123,34 @@ source /etc/environment
 ### GCC ARM Toolchain
 ###
 export PATH="$HOME/EmbeddedARM/gcc-arm-none-eabi/gcc-arm-none-eabi-5_4-2016q2/bin:$PATH"
+export PATH="$HOME/EmbeddedARM/gcc-arm-none-eabi/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 [[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
 
 export PATH="$HOME/.npm-global/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:"$HOME/.config/emacs/bin"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+. "$HOME/.cargo/env"
+
+# pyenv
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+
+export VCPKG_DISABLE_METRICS=true
+
+export PATH=/home/jeremy/.nimble/bin:$PATH
+
+export PATH="/opt/Qt/Tools/QtCreator/bin:$PATH"
+
+# Added by Radicle.
+export PATH="$PATH:/tmp/radicle/bin"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
