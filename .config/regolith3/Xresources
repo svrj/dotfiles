@@ -1,4 +1,17 @@
-regolith.wallpaper.file: "/home/jeremy/Pictures/Fotokite/Fotokite_003.jpg"
-regolith.lockscreen.wallpaper.file: "/home/jeremy/Pictures/Fotokite/Fotokite_003.jpg"
+regolith.wallpaper.file: "/home/jeremy/Pictures/wallpaper"
+regolith.lockscreen.wallpaper.file: "/home/jeremy/Pictures/lockscreen"
 !regolith.look.path: /usr/share/regolith-look/solarized-dark
 regolith.look.path: /usr/share/regolith-look/nord
+!font retrocide-mono:Retrocide Mono:size=10
+!font pango:DejaVu Sans Mono:size=10
+!gnome.terminal.font: JetBrains Mono 10
+!gnome.terminal.font: Roboto Mono 10
+!gnome.terminal.font: Retrocide Mono 12
+!gnome.terminal.font: Retrocide Mono, Terminus Bold Condensed 9
+
+! --- Colors ---
+XTerm*foreground:  #dcdccc
+XTerm*background:  #1c1c1c
+XTerm*cursorColor: #ffff00
+XTerm*faceName: Myna
+XTerm*faceSize: 12
