@@ -177,7 +177,7 @@ function link_dotfile {
 }
 
 link_dotfiles() {
-    link_dotfile .vimrc "$HOME"
+    #link_dotfile .vimrc "$HOME"
     link_dotfile .bashrc "$HOME"
     link_dotfile .config "$HOME"
 }
@@ -189,17 +189,25 @@ setup_dotfiles() {
 }
 
 setup_vim() {
-    mkdir -p "$dotfilesDir/.vim/bundle"
-    cd "$dotfilesDir/.vim/bundle" || exit 1
-    git clone http://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim +PluginInstall +qall
+    # mkdir -p "$dotfilesDir/.vim/bundle"
+    # cd "$dotfilesDir/.vim/bundle" || exit 1
+    # git clone http://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    # vim +PluginInstall +qall
+    #
+    # sudo apt install -y \
+    #     neovim \
+    #     nodejs \
+    #     npm
+    # mkdir "$HOME/.npm-global"
+    # npm config set prefix "$HOME/.npm-global"
 
-    sudo apt install -y \
-        neovim \
-        nodejs \
-        npm
-    mkdir "$HOME/.npm-global"
-    npm config set prefix "$HOME/.npm-global"
+    # Check if neovim config dir exists
+    if [ -d "$HOME/.config/nvim" ]; then
+        cp init.lua "$HOME/.config/nvim/init.lua"
+    else
+        echo "Neovim config directory does not exist. Stopping."
+        return 1
+    fi
 }
 
 setup_sdkman() {
@@ -251,7 +259,8 @@ do_thing() {
             link_dotfiles
             ;;
         vim|--vim)
-            echo "Setting up vim"
+        nvim|--nvim)
+            echo "Setting up nvim"
             setup_vim
             ;;
             *)
